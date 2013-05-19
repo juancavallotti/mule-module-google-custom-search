@@ -1,0 +1,3 @@
+<!-- BEGIN_INCLUDE(google-search:search) -->
+<google-search:search query="#[header:inbound:query]" />
+<!-- END_INCLUDE(google-search:search) -->
