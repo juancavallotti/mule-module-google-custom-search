@@ -6,7 +6,7 @@
     <artifactId>mule-module-google-custom-search</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-module</packaging>
-    <name>Mule Cloud Connector</name>
+    <name>Google Custom Search Connector</name>
 
     <properties>
         <mule.version>3.4.0</mule.version>

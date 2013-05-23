@@ -139,7 +139,7 @@ public class GoogleSearchModule {
                 //we want to urlencode the parameters and the values.
                 ret.append(URLEncoder.encode(key, "UTF-8"));
                 ret.append("=");
-                ret.append(URLEncoder.encode(searchParams.get(key)));
+                ret.append(searchParams.get(key));
                 ret.append("&");
             }
         } catch (UnsupportedEncodingException ex) {
