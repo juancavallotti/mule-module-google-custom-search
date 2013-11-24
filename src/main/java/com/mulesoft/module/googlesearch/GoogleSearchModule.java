@@ -31,7 +31,7 @@ import java.util.HashMap;
  *
  * @author Juan Alberto López Cavallotti.
  */
-@Module(name = "google-search", schemaVersion = "1.0.0-SNAPSHOT")
+@Module(name = "google-search", schemaVersion = "1.0.0-SNAPSHOT", friendlyName = "Google Custom Search Module")
 public class GoogleSearchModule {
 
     private static final Logger logger = LoggerFactory.getLogger(GoogleSearchModule.class);

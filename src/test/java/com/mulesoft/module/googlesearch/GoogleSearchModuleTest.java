@@ -5,10 +5,11 @@ package com.mulesoft.module.googlesearch;
 
 import org.mule.api.MuleEvent;
 import org.mule.construct.Flow;
-import org.mule.tck.FunctionalTestCase;
-import org.mule.tck.AbstractMuleTestCase;
+import org.mule.tck.junit4.FunctionalTestCase;
 
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class GoogleSearchModuleTest extends FunctionalTestCase
 {
@@ -33,7 +34,7 @@ public class GoogleSearchModuleTest extends FunctionalTestCase
     protected <T> void runFlowAndExpect(String flowName, T expect) throws Exception
     {
         Flow flow = lookupFlowConstruct(flowName);
-        MuleEvent event = AbstractMuleTestCase.getTestEvent(null);
+        MuleEvent event = getTestEvent(null);
         MuleEvent responseEvent = flow.process(event);
 
         assertEquals(expect, responseEvent.getMessage().getPayload());
@@ -50,7 +51,7 @@ public class GoogleSearchModuleTest extends FunctionalTestCase
     protected <T, U> void runFlowWithPayloadAndExpect(String flowName, T expect, U payload) throws Exception
     {
         Flow flow = lookupFlowConstruct(flowName);
-        MuleEvent event = AbstractMuleTestCase.getTestEvent(payload);
+        MuleEvent event = getTestEvent(payload);
         MuleEvent responseEvent = flow.process(event);
 
         assertEquals(expect, responseEvent.getMessage().getPayload());
@@ -63,6 +64,6 @@ public class GoogleSearchModuleTest extends FunctionalTestCase
      */
     protected Flow lookupFlowConstruct(String name)
     {
-        return (Flow) AbstractMuleTestCase.muleContext.getRegistry().lookupFlowConstruct(name);
+        return (Flow) muleContext.getRegistry().lookupFlowConstruct(name);
     }
 }
