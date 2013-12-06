@@ -161,6 +161,11 @@ public class GoogleSearchModule {
     protected static void validateResponse(MuleMessage msg) {
         String statusCode = msg.getInboundProperty("http.status");
 
+        if (logger.isDebugEnabled()) {
+            logger.debug("Payload to validate:");
+            logger.debug(msg.getPayload().toString());
+        }
+
         if (!StringUtils.equals("200", statusCode)) {
             throw new IllegalStateException("API responded with unsuccessful status: " + statusCode);
         }
