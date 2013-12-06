@@ -3,8 +3,12 @@
  */
 package com.mulesoft.module.googlesearch;
 
+import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleEvent;
+import org.mule.api.MuleMessage;
+import org.mule.api.transport.PropertyScope;
 import org.mule.construct.Flow;
+import org.mule.tck.MuleTestUtils;
 import org.mule.tck.junit4.FunctionalTestCase;
 
 import org.junit.Test;
@@ -24,6 +28,24 @@ public class GoogleSearchModuleTest extends FunctionalTestCase
     {
         //runFlowAndExpect("testFlow", "Another string");
     }
+
+    @Test(expected = IllegalStateException.class)
+    public void testStatusValidation() throws Exception {
+        MuleEvent evt = getTestEvent("Some Message");
+        MuleMessage msg = evt.getMessage();
+        msg.setProperty("http.status", "400", PropertyScope.INBOUND);
+        GoogleSearchModule.validateResponse(msg);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testContentTypeValidation() throws Exception {
+        MuleEvent evt = getTestEvent("Some Message");
+        MuleMessage msg = evt.getMessage();
+        msg.setProperty("http.status", "200", PropertyScope.INBOUND);
+        msg.setProperty("Content-Type", "text/plain", PropertyScope.INBOUND);
+        GoogleSearchModule.validateResponse(msg);
+    }
+
 
     /**
     * Run the flow specified by name and assert equality on the expected output

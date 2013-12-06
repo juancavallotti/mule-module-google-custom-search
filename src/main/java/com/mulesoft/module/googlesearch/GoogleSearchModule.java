@@ -120,6 +120,11 @@ public class GoogleSearchModule {
             message.setOutboundProperty("http.method", "GET");
 
             MuleEvent responseEvent = endpoint.process(event);
+
+            MuleMessage responseMessage = responseEvent.getMessage();
+
+            validateResponse(responseMessage);
+
             //return the payload.
             return responseEvent.getMessage().getPayload(String.class);
         } catch (MuleException e) {
@@ -151,6 +156,22 @@ public class GoogleSearchModule {
 
         return ret.toString();
     }
+
+
+    protected static void validateResponse(MuleMessage msg) {
+        String statusCode = msg.getInboundProperty("http.status");
+
+        if (!StringUtils.equals("200", statusCode)) {
+            throw new IllegalStateException("API responded with unsuccessful status: " + statusCode);
+        }
+
+        String contentType = msg.getInboundProperty("Content-Type");
+
+        if (!StringUtils.startsWith(contentType, "application/json")) {
+            throw new IllegalStateException("API responded with unsuccessful content type: " + contentType);
+        }
+    }
+
 
     private HashMap<String, String> buildSearchParams(String query, String siteSearch, SearchType searchType, SearchConfiguration searchConfiguration) {
 
