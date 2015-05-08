@@ -9,10 +9,10 @@
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
         http://www.mulesoft.org/schema/mule/google-search http://www.mulesoft.org/schema/mule/google-search/current/mule-google-search.xsd">
 
-    <google-search:config apiKey="my-api-key" searchEngineId="my-search-engine-id" />
+    <google-search:config name="googleSearch" apiKey="my-api-key" searchEngineId="my-search-engine-id" />
 
     <flow name="testFlow">
-        <google-search:search query="payload" />
+        <google-search:search config-ref="googleSearch" query="payload" />
     </flow>
 
 </mule>
