@@ -50,7 +50,6 @@ public class GoogleSearchModule {
      * This parameter represents the custom search engine ID.
      */
     @Configurable
-    @Optional
     @Default("")
     private String searchEngineId;
 
@@ -59,7 +58,6 @@ public class GoogleSearchModule {
      * This parameter represents the custom search engine URL.
      */
     @Configurable
-    @Optional
     @Default("")
     private String searchEngineUrl;
 
@@ -102,8 +100,8 @@ public class GoogleSearchModule {
     @Processor
     @Inject
     @Mime("application/json")
-    public String search(MuleEvent event, String query, @Optional @Default("") String siteSearch,
-                         @Optional @Default("WEB_SEARCH") SearchType searchType, @Optional SearchConfiguration searchConfiguration) {
+    public String search(MuleEvent event, String query, @Default("") String siteSearch,
+                         @Default("WEB_SEARCH") SearchType searchType, @Optional SearchConfiguration searchConfiguration) {
 
         MuleContext context = event.getMuleContext();
 
