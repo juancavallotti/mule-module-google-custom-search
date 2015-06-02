@@ -6,7 +6,7 @@
         <entry key="siteSearch" value=""/>
         <entry key="searchType" value="WEB_SEARCH"/>
     </util:map>
-    <bean class="" id="search_SearchConfiguration">
+<!--     <bean class="" id="search_SearchConfiguration">
         <property name="" value=""/>
-    </bean>
+    </bean> -->
 </beans>
