@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:google-search="http://www.mulesoft.org/schema/mule/google-search" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.mulesoft.org/schema/mule/google-search http://www.mulesoft.org/schema/mule/google-search/current/mule-google-search.xsd"
+>
+
+<context:property-placeholder location="automation-credentials.properties" />
+
+<google-search:config searchEngineId="${google-search.searchEngineId}" searchEngineUrl="${google-search.searchEngineUrl}" apiKey="${google-search.apiKey}" name="Google-search" doc:name="Google-search"></google-search:config>
+
+<flow name="search" doc:name="Search">
+	<google-search:search config-ref="Google-search" query="#[flowVars.query]" >
+		<google-search:search-configuration ref="#[flowVars.SearchConfigurationRef]"/>
+	</google-search:search>
+</flow>
+
+
+</mule>

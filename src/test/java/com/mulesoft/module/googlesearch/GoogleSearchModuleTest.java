@@ -3,19 +3,17 @@
  */
 package com.mulesoft.module.googlesearch;
 
-import org.mule.DefaultMuleMessage;
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleMessage;
 import org.mule.api.transport.PropertyScope;
 import org.mule.construct.Flow;
-import org.mule.tck.MuleTestUtils;
-import org.mule.tck.junit4.FunctionalTestCase;
+import org.mule.modules.tests.ConnectorTestCase;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class GoogleSearchModuleTest extends FunctionalTestCase
+public class GoogleSearchModuleTest extends ConnectorTestCase
 {
     @Override
     protected String getConfigResources()

@@ -31,7 +31,7 @@ import java.util.HashMap;
  *
  * @author Juan Alberto López Cavallotti.
  */
-@Module(name = "google-search", schemaVersion = "1.0.0-SNAPSHOT", friendlyName = "Google Custom Search Module")
+@Module(name = "google-search", schemaVersion = "2.0.0", friendlyName = "Google Custom Search Module")
 public class GoogleSearchModule {
 
     private static final Logger logger = LoggerFactory.getLogger(GoogleSearchModule.class);
@@ -110,6 +110,8 @@ public class GoogleSearchModule {
         HashMap<String, String> searchParams = buildSearchParams(query, siteSearch, searchType, searchConfiguration);
 
         String apiUrl = buildSearchUrl(searchParams);
+        
+        logger.debug("Query to send: "+apiUrl);
 
         try {
             OutboundEndpoint endpoint = context.getEndpointFactory().getOutboundEndpoint(apiUrl);
@@ -142,7 +144,7 @@ public class GoogleSearchModule {
                 //we want to urlencode the parameters and the values.
                 ret.append(URLEncoder.encode(key, "UTF-8"));
                 ret.append("=");
-                ret.append(searchParams.get(key));
+                ret.append(URLEncoder.encode(searchParams.get(key), "UTF-8"));
                 ret.append("&");
             }
         } catch (UnsupportedEncodingException ex) {
